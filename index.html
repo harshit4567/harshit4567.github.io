@@ -1,7 +1,105 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>My Personal Website</h1>
-    <p>Welcome to my website!</p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[WIP] My Personal Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>[WIP] My Personal Website</h1>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hi, I'm Harshit. I am Software Engineer @Glean contributing my part in building the best Enterprise search offering out there. 
+
+                Before that I was a software engineer at Google where I worked on Cloud Search [ Enterprise search offering by Google ] with a short stint in Google Search. I completed my undergrad in Computer Science from Indian Institute of Technology Guwahati.
+                
+                Computer science, data, mathematics, and logic excites me. Its always a delight to see how the works of so many people came together for us to experience what we experience today. Like some seemingly random fluctuations of electrical signals somewhere in another corner of the world transmitted to your device is making it possible for you to read this ⚡️.</p>
+        </section>
+        <section id="projects" class="hidden">
+            <h2>My Projects</h2>
+            <ul>
+                <li>Yet to fill!!</li>
+            </ul>
+        </section>
+        <section id="contact" class="hidden">
+            <h2>Contact Me</h2>
+            <p>You can reach me at harshit4567@gmail.com</p>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 [Harshit]. All rights reserved.
+    </footer>
+    <script>
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                sections.forEach(section => {
+                    if (section.getAttribute('id') === targetId.slice(1)) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
 </html>
