@@ -33,6 +33,10 @@
             text-decoration: none;
             margin: 0 10px;
         }
+        nav a.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
         main {
             max-width: 800px;
             margin: 20px auto;
@@ -56,9 +60,10 @@
         <h1>[WIP] My Personal Website</h1>
     </header>
     <nav>
-        <a href="#about">About</a>
+        <a href="#about" class="active">About</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
+        <a href="#musings">Musings</a>
     </nav>
     <main>
         <section id="about">
@@ -79,27 +84,52 @@
             <h2>Contact Me</h2>
             <p>You can reach me at harshit4567@gmail.com</p>
         </section>
+        <section id="musings" class="hidden">
+            <h2>Musings</h2>
+            <ul>
+                <li>
+                    <a href="musings/musing1.html">Musing 1</a>
+                </li>
+            </ul>
+        </section>
     </main>
     <footer>
         &copy; 2024 [Harshit]. All rights reserved.
     </footer>
     <script>
         const navLinks = document.querySelectorAll('nav a');
-        const sections = document.querySelectorAll('section');
+        const sections = document.querySelectorAll('main > section');
+
+        function showSection(targetId) {
+            sections.forEach(section => {
+                if (section.id === targetId.slice(1)) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === targetId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
 
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href');
-                sections.forEach(section => {
-                    if (section.getAttribute('id') === targetId.slice(1)) {
-                        section.classList.remove('hidden');
-                    } else {
-                        section.classList.add('hidden');
-                    }
-                });
+                showSection(targetId);
+                history.pushState(null, '', targetId);
             });
         });
+
+        // Show the correct section on page load
+        const initialSection = window.location.hash || '#about';
+        showSection(initialSection);
     </script>
 </body>
 </html>
